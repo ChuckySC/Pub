@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from client.models import *
+
+
+
+
+# CODEBOOKS / PROPERTIES
+admin.site.register(Units)
+admin.site.register(MenuSections)
