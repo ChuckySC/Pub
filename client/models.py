@@ -95,3 +95,24 @@ class Events(models.Model):
     
     def __str__(self):
         return f'{self.name}'
+    
+class Gallery(models.Model):
+    id = models.BigAutoField(db_column='id', primary_key=True)
+    eventId = models.ForeignKey(Events, models.DO_NOTHING, db_column='eventId', verbose_name='Event')
+    img = ResizedImageField(
+        size=[2878, 1618], 
+        crop=['middle', 'center'], 
+        default='default_square.jpg', 
+        upload_to='uploads',
+        verbose_name='Photo for gallery'
+    )
+    
+    class Meta:
+        managed = True
+        verbose_name_plural = 'Gallery'
+        ordering = ['id']
+        constraints = [models.UniqueConstraint(fields=['img'], name='unique_event_photo')]
+        db_table = 'Gallery'
+    
+    def __str__(self):
+        return f'{self.id}'

@@ -53,3 +53,10 @@ def events_data(request):
         return events_response.data
     except Exception as e:
         return None
+    
+def gallery_data(request):
+    try:
+        gallery_response = gallery_view(request)
+        return gallery_response.data
+    except Exception as e:
+        return None

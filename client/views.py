@@ -9,8 +9,9 @@ def index(request):
     return render(request, 'components/menu.html', context)
 
 def gallery(request):
+    # TODO FE part for imgs is hardcoded because imgs exist only locally 
     context = {
-        
+        'data': gallery_data(request)
     }
     return render(request, 'components/gallery.html', context)
 

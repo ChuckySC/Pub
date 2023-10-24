@@ -35,3 +35,10 @@ class EventsSerializer(serializers.ModelSerializer):
             'date',
             'img'
         ]
+        
+class GallerySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Events
+        fields = [
+            'img'
+        ]

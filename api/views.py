@@ -33,3 +33,12 @@ def events_view(request):
         return Response(serialized.data, status=status.HTTP_200_OK)
     except:
         return Response(None, status=status.HTTP_400_BAD_REQUEST)   
+    
+@api_view(['GET'])
+def gallery_view(request):
+    try:
+        gallery = Gallery.objects.all()
+        serialized = GallerySerializer(gallery, many=True)
+        return Response(serialized.data, status=status.HTTP_200_OK)
+    except:
+        return Response(None, status=status.HTTP_400_BAD_REQUEST) 
