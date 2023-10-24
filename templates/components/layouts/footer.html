@@ -1,0 +1,38 @@
+{% load static %}
+
+{% block content %}
+    <footer class="page-footer">
+        <div class="container py-5 text-center text-body-secondary bg-body-tertiary">
+            <div class="row">
+            <div class="col-md-4" align="center">
+                <!-- First column content -->
+                <img alt="Pub Logo" src="{% static 'assets/img/brand/logo.jpg'%}" width="280" height="150" class="logo">
+            </div>
+            <div class="col-md-4" align="center">
+                <!-- Second column content -->
+                <p>
+                    <strong>Pub Cafe Bistro</strong> 
+                    <br> Address: Street, City
+                    <br> Contact: 000/0000 000
+                    <br> E-mail: info@pub.rs
+                </p>
+            </div>
+            <div class="col-md-4" align="center">
+                <!-- Third column content -->
+                <p>
+                    <strong>Working hours</strong> 
+                    <br> Monday-Friday:	08:00-00:00
+                    <br> Saturday: 08:00-01:00
+                    <br> Sunday: 08:00-01:00
+                </p>
+            </div>
+            </div>
+        </div>
+        <div class="col-lg-12 copyright-links" align="center">
+            All contents © copyright 2023 <a href="https://github.com/ChuckySC" target="_blank">Chucky</a>. All rights reserved. 
+        </div>
+        <!--<p class="mb-0">
+            <a href="#">Back to top</a>
+        </p>-->
+    </footer>
+{% endblock content %}

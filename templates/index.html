@@ -1,0 +1,42 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Chucky SC">
+        <meta name="generator" content="Pub Website">
+        <title>Pub Website</title>
+    
+        <!-- STYLES -->
+        {% include 'components/layouts/styles.html' %}
+        <style>
+            body {
+                background-image: url("{% static 'assets/img/background-paper.jpg' %}");
+                background-repeat: repeat;
+                background-color: #cccccc;
+            }
+        </style>
+
+        <!-- TOP SCRIPTS -->
+        {% include 'components/layouts/top-scripts.html' %}
+
+    </head>
+    <body>
+        <!-- HEADER -->
+        {% include 'components/layouts/header.html' %}
+
+        <main class="container text-body-secondary bg-body-tertiary">
+            <!-- ========== APP-CONTENT ========== -->
+            {% block content %}{% endblock content %}
+        </main>
+
+        <!-- FOOTER -->
+        {% include 'components/layouts/footer.html' %}
+
+        <!-- BOTTOM SCRIPTS -->
+        {% include 'components/layouts/bottom-scripts.html' %}
+    </body>
+</html>

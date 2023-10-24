@@ -1,8 +1,10 @@
 from django.urls import path
 from . import views
 
-app_name = 'frontend'
+app_name = 'client'
 
 urlpatterns = [
-    path('', name='index')
+    path('', views.index, name='index'), # menu
+    path('gallery/', views.gallery, name='gallery'),
+    path('events/', views.events, name='events')
 ]

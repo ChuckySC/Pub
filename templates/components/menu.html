@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+    <style>
+        p.menu-type {
+            font-size: 1.25rem;
+            color: #a03636;
+            flex: 0 0 auto;
+            text-align: center;
+        }
+        p.menu-section {
+            font-size: 1.25rem;
+            color: #4b1c1c;
+        }
+    </style>
+    <div class="menu-tab">
+        {% if data is None %}
+            <!--Error page-->
+        {% else %}
+            {% for type, sections in data.items %}
+                <!--<p class="menu-type">{{ type }}</p>-->
+                
+                {% for section in sections %}
+                    <p class="menu-section">{{ section.name }}</p>
+
+                    <table class="table">
+                        <tbody>
+                            {% for item in section.data %}
+                                <tr>
+                                    <th scope="row">{{ item.name }}</th>
+                                    <td>{{ item.description }}</td>
+                                    {% if item.quantity is None or item.unit is None %}
+                                        <td></td>
+                                    {% else %}
+                                        <td>{{ item.quantity }} {{ item.unit }}</td>
+                                    {% endif %}
+                                    <td>{{ item.price }} {{ item.currency }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock content %}

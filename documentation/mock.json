@@ -1,0 +1,61 @@
+{
+    "Drink": {
+        "Coffee": [
+            {
+                "name": "Espresso with soy milk",
+                "description": "",
+                "quantity": null,
+                "unit": null,
+                "price": 270.0,
+                "currency": "rsd",
+                "active": true
+            }
+        ]
+    },
+    "Food": {
+        "Breakfast": [
+            {
+                "name": "BREAKFAST FOR CHAMPIONS",
+                "description": "Sunny side up egg, fried cheese and small šopska salad served with French fries and small beef steak with dreasing",
+                "quantity": 450.0,
+                "unit": "gram",
+                "price": 790.0,
+                "currency": "rsd",
+                "active": true
+            }
+        ],
+        "Lunch": [
+            {
+                "name": "BURGER SLIDERS",
+                "description": "Three small burgers with cheddar cheese, iceberg salad, tomato, caramelized onion, ranch dressing in brios bun served with French fries on the side and ketchup",
+                "quantity": 520.0,
+                "unit": "gram",
+                "price": 1050.0,
+                "currency": "rsd",
+                "active": true
+            }
+        ],
+        "Salad": [
+            {
+                "name": "CEASAR SALAD",
+                "description": "Green salad mix with grilled chicken breast, crispy bacon, croutons, parmesan and Caesar dressing",
+                "quantity": 330.0,
+                "unit": "gram",
+                "price": 935.0,
+                "currency": "rsd",
+                "active": true
+            }
+        ],
+        "Side dish": [
+            {
+                "name": "ONION RINGS",
+                "description": "",
+                "quantity": 200.0,
+                "unit": "gram",
+                "price": 390.0,
+                "currency": "rsd",
+                "active": true
+            }
+        ]
+    }
+}

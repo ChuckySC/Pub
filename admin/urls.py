@@ -22,10 +22,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('', include('client.urls'))
+    path('', include('client.urls')),
+    path('api/', include('api.urls')) 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # Configure Admin Titles
-admin.site.site_title = 'Pub'
-admin.site.site_header = 'Pub Administration'
-admin.site.index_title = 'Welcome To The Pub Admin Area ...'
+admin.site.site_title = 'Pub Cafe Bistro'
+admin.site.site_header = 'Pub Cafe Bistro Administration'
+admin.site.index_title = 'Welcome To The Pub Cafe Bistro Admin Area ...'

@@ -1,2 +1,5 @@
 Django ~= 4.1
 Pillow
+requests
+django-resized
+djangorestframework
