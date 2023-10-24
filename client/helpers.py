@@ -37,12 +37,19 @@ def render_sections(sections):
     except Exception as e:
         return None
 
-def menu(request):
+def menu_data(request):
     try:
         items_response = items_view(request)
         sections_response = sections_view(request)
         items_by_sections = render_items(items_response, sections_response)
         sections_types = render_sections(items_by_sections)
         return sections_types
+    except Exception as e:
+        return None
+    
+def events_data(request):
+    try:
+        events_response = events_view(request)
+        return events_response.data
     except Exception as e:
         return None

@@ -23,4 +23,13 @@ def items_view(request):
         serialized = MenuItemsSerializer(items, many=True)
         return Response(serialized.data, status=status.HTTP_200_OK)
     except:
-        return Response(None, status=status.HTTP_400_BAD_REQUEST)    
+        return Response(None, status=status.HTTP_400_BAD_REQUEST)  
+    
+@api_view(['GET'])
+def events_view(request):
+    try:
+        events = Events.objects.all()
+        serialized = EventsSerializer(events, many=True)
+        return Response(serialized.data, status=status.HTTP_200_OK)
+    except:
+        return Response(None, status=status.HTTP_400_BAD_REQUEST)   

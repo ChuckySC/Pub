@@ -24,3 +24,14 @@ class MenuItemsSerializer(serializers.ModelSerializer):
             'currency',
             'active'
         ]
+        
+class EventsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Events
+        fields = [
+            'id',
+            'name',
+            'description',
+            'date',
+            'img'
+        ]

@@ -1,8 +1,5 @@
 from django.db import models
 from django_resized import ResizedImageField
-#from django.utils import timezone
-
-#from PIL import Image
 
 class Units(models.Model):
     '''Example: litar, kilogram ...'''
@@ -82,7 +79,7 @@ class Events(models.Model):
     description = models.TextField(db_column='description', blank=True, verbose_name='Event description')
     date = models.DateField(db_column='date', verbose_name='Date')
     img = ResizedImageField(
-        size=[1000, 1000], 
+        size=[2878, 1618], 
         crop=['middle', 'center'], 
         default='default_square.jpg', 
         upload_to='uploads',
