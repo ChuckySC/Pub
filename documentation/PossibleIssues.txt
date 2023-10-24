@@ -1,0 +1,22 @@
+### MIGRATION ISSUE
+
+    If you are using new DB and migrate is not creating tables try:
+        1. reset all migrations to the zeroth state
+                python manage.py migrate --fake <appname> zero
+        2. creat the tables
+                python manage.py migrate <appname>
+
+
+
+### INSTALL PYODBC ISSUE
+
+    When running the application or the DB migrations you may get the following error:
+    (0x0002): symbol not found in flat namespace '_SQLAllocHandle'
+
+    A detail explanation of why that is happening is described here - https://github.com/mkleehammer/pyodbc/issues/1124
+
+    Environment where that can happen: Mac M1
+    Reason: pyodbc 4.0.35 didn't include wheel files for ARM64 MacOSX, only regular Macs.
+
+    The solution is NOT using pyodbc 4.0.35 or:
+    pip install --no-binary :all: pyodbc
