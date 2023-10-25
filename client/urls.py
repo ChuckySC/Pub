@@ -6,5 +6,6 @@ app_name = 'client'
 urlpatterns = [
     path('', views.index, name='index'), # menu
     path('gallery/', views.gallery, name='gallery'),
-    path('events/', views.events, name='events')
+    path('events/', views.events, name='events'),
+    path('events/<int:id>', views.event, name='event')
 ]

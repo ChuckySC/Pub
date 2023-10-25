@@ -21,3 +21,10 @@ def events(request):
         'data': events_data(request)
     }
     return render(request, 'components/events.html', context)
+
+def event(request, id):
+    # TODO FE part for imgs is hardcoded because imgs exist only locally 
+    context = {
+        'data': event_data(request, id)
+    }
+    return render(request, 'components/event.html', context)
