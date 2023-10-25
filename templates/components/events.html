@@ -15,9 +15,14 @@
                             <p class="card-text" style="color: red">{{ event.name }}</p>
                             <p class="card-text">{{ event.description }}</p>
                             <div class="d-flex justify-content-between align-items-center">
-                            <!--<div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                            </div>-->
+                            <div class="btn-group">
+                                <a href="{% url 'client:event' event.id %}">
+                                    <button 
+                                        type="button" 
+                                        class="btn btn-sm btn-outline-secondary"
+                                    >View</button>
+                                </a>
+                            </div>
                             <small class="text-body-secondary">Event date: {{ event.date }}</small>
                         </div>
                     </div>
