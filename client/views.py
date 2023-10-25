@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .helpers import *
 
@@ -27,4 +27,7 @@ def event(request, id):
     context = {
         'data': event_data(request, id)
     }
+    
+    if context['data'] is None:
+        return redirect('/events/')
     return render(request, 'components/event.html', context)
