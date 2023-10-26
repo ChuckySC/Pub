@@ -15,26 +15,17 @@ class Units(models.Model):
     
     def __str__(self):
         return f'{self.name}'
-    
+
+class TypeChoices(models.TextChoices):    
+    # DB_VALUE, USER_FACING_VALUE
+    DRINK = 'D', 'Drink'
+    FOOD = 'F', 'Food'
+
 class MenuSections(models.Model):
     '''Example: Breakfast, Lunch, Coffee, Alcohol ...'''
-    
-    # DB_VALUE
-    DRINK_DB = 'D'
-    FOOD_DB = 'F'
-    # USER_FACING_VALUE
-    DRINK_UI = 'Drink'
-    FOOD_UI = 'Food'
-    
-    TYPE_CHOICES =(
-        (DRINK_DB, DRINK_UI),
-        (FOOD_DB, FOOD_UI)
-    )
-    
-    
     id = models.BigAutoField(db_column='id', primary_key=True)
     name = models.CharField(db_column='name', max_length=255, verbose_name='Menu Section')
-    type = models.CharField(max_length=1, choices=TYPE_CHOICES, default=DRINK_DB, verbose_name='Type')
+    type = models.CharField(max_length=1, choices=TypeChoices.choices, default=TypeChoices.DRINK, verbose_name='Type')
     
     class Meta:
         managed = True
