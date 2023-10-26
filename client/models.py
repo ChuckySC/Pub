@@ -23,14 +23,14 @@ class Units(BaseTimestampModel):
 
 class TypeChoices(models.TextChoices):    
     # DB_VALUE, USER_FACING_VALUE
-    DRINK = 'D', 'Drink'
+    DRINKS = 'D', 'Drinks'
     FOOD = 'F', 'Food'
 
 class MenuSections(BaseTimestampModel):
     '''Example: Breakfast, Lunch, Coffee, Alcohol ...'''
     id = models.BigAutoField(db_column='id', primary_key=True)
     name = models.CharField(db_column='name', max_length=255, unique=True, verbose_name='Menu Section')
-    type = models.CharField(max_length=1, choices=TypeChoices.choices, default=TypeChoices.DRINK, verbose_name='Type')
+    type = models.CharField(max_length=1, choices=TypeChoices.choices, default=TypeChoices.DRINKS, verbose_name='Type')
     
     class Meta:
         managed = True

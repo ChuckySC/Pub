@@ -19,14 +19,14 @@ def render_items(items_response, sections_response):
     
 def render_sections(sections):
     output = {
-        TypeChoices.DRINK.label: [],
+        TypeChoices.DRINKS.label: [],
         TypeChoices.FOOD.label: []
     }
     
     try:
         for i in range(len(sections)):
-            if sections[i]['type'] == TypeChoices.DRINK.value:
-                output[TypeChoices.DRINK.label].append(sections[i])
+            if sections[i]['type'] == TypeChoices.DRINKS.value:
+                output[TypeChoices.DRINKS.label].append(sections[i])
             else:
                 output[TypeChoices.FOOD.label].append(sections[i])
         return output
