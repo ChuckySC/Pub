@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.conf import settings
 from django_resized import ResizedImageField
 
@@ -82,7 +83,7 @@ class Events(BaseTimestampModel):
     id = models.BigAutoField(db_column='id', primary_key=True)
     name = models.CharField(db_column='name', max_length=255, verbose_name='Event name')
     description = models.TextField(db_column='description', blank=True, verbose_name='Event description')
-    date = models.DateField(db_column='date', verbose_name='Date')
+    date = models.DateField(db_column='date', auto_now_add=False, auto_now=False, default=timezone.now, verbose_name='Date')
     img = ResizedImageField(
         size=[2878, 1618], 
         crop=['middle', 'center'], 
