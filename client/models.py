@@ -14,6 +14,7 @@ class Units(BaseTimestampModel):
 
     class Meta:
         managed = True
+        verbose_name = 'Unit'
         verbose_name_plural = 'Units'
         ordering = ['name']
         db_table = 'Units'
@@ -34,6 +35,7 @@ class MenuSections(BaseTimestampModel):
     
     class Meta:
         managed = True
+        verbose_name = 'Menu Section'
         verbose_name_plural = 'Menu Sections'
         ordering = ['type', 'id']
         db_table = 'MenuSections'
@@ -67,6 +69,7 @@ class MenuItems(BaseTimestampModel):
 
     class Meta:
         managed = True
+        verbose_name = 'Menu Item'
         verbose_name_plural = 'Menu Items'
         ordering = ['name']
         constraints = [models.UniqueConstraint(fields=['name', 'type'], name='unique_item')]
@@ -90,6 +93,7 @@ class Events(BaseTimestampModel):
     
     class Meta:
         managed = True
+        verbose_name = 'Event'
         verbose_name_plural = 'Events'
         ordering = ['date', 'name']
         constraints = [models.UniqueConstraint(fields=['name', 'date'], name='unique_event')]
@@ -116,6 +120,7 @@ class Gallery(BaseTimestampModel):
     
     class Meta:
         managed = True
+        verbose_name = 'Gallery'
         verbose_name_plural = 'Gallery'
         ordering = ['id']
         constraints = [models.UniqueConstraint(fields=['img'], name='unique_event_photo')]
