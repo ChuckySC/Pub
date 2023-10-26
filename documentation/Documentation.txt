@@ -141,6 +141,9 @@ USEFULL COMMANDS
                 from <appname>.models import MyModel
                 obj = MyModel(id=1, name='objName', ...rest of the required fields)
                 obj.save()
+
+                obj.delete()
+                exit()
     ~ Check the whole project for errors.
             python manage.py check
     
@@ -152,3 +155,8 @@ USEFULL COMMANDS
 
         ps. You need to re-run this command whenever you want to publish new versions of your static files.
         More info --> https://help.pythonanywhere.com/pages/DjangoStaticFiles/
+
+    ~ Squash migrations:
+        python manage.py squashmigrations <appname> <last_migration_we_want_to_be_squashed>
+
+        Example: python manage.py squashmigrations app 0004

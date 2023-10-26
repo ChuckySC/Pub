@@ -1,10 +1,6 @@
 from api.views import *
+from .models import MenuSections
 
-
-TYPE_CHOICES = {
-    'D': 'Drink',
-    'F': 'Food'
-}
   
 def render_items(items_response, sections_response):
     try:
@@ -23,16 +19,16 @@ def render_items(items_response, sections_response):
     
 def render_sections(sections):
     output = {
-        TYPE_CHOICES['D']: [],
-        TYPE_CHOICES['F']: []
+        MenuSections.DRINK_UI: [],
+        MenuSections.FOOD_UI: []
     }
     
     try:
         for i in range(len(sections)):
-            if sections[i]['type'] == 'D':
-                output[TYPE_CHOICES['D']].append(sections[i])
+            if sections[i]['type'] == MenuSections.DRINK_DB:
+                output[MenuSections.DRINK_UI].append(sections[i])
             else:
-                output[TYPE_CHOICES['F']].append(sections[i])
+                output[MenuSections.FOOD_UI].append(sections[i])
         return output
     except Exception as e:
         return None
