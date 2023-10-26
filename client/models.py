@@ -6,13 +6,12 @@ from admin.db.models import BaseTimestampModel
 class Units(BaseTimestampModel):
     '''Example: litar, kilogram ...'''
     id = models.BigAutoField(db_column='id', primary_key=True)
-    name = models.CharField(db_column='name', max_length=255, verbose_name='Unit')
+    name = models.CharField(db_column='name', max_length=255, unique=True, verbose_name='Unit')
 
     class Meta:
         managed = True
         verbose_name_plural = 'Units'
         ordering = ['name']
-        constraints = [models.UniqueConstraint(fields=['name'], name='unique_unit')]
         db_table = 'Units'
     
     def __str__(self):
@@ -26,14 +25,13 @@ class TypeChoices(models.TextChoices):
 class MenuSections(BaseTimestampModel):
     '''Example: Breakfast, Lunch, Coffee, Alcohol ...'''
     id = models.BigAutoField(db_column='id', primary_key=True)
-    name = models.CharField(db_column='name', max_length=255, verbose_name='Menu Section')
+    name = models.CharField(db_column='name', max_length=255, unique=True, verbose_name='Menu Section')
     type = models.CharField(max_length=1, choices=TypeChoices.choices, default=TypeChoices.DRINK, verbose_name='Type')
     
     class Meta:
         managed = True
         verbose_name_plural = 'Menu Sections'
         ordering = ['type', 'id']
-        constraints = [models.UniqueConstraint(fields=['name'], name='unique_section')]
         db_table = 'MenuSections'
     
     def __str__(self):
@@ -71,8 +69,6 @@ class MenuItems(BaseTimestampModel):
         db_table = 'MenuItems'
     
     def __str__(self):
-        # if str(self.description).strip() not in ['', 'None']:
-        #     return f'{self.name} --> {self.description}'
         return f'{self.name}'
 
 class Events(BaseTimestampModel):

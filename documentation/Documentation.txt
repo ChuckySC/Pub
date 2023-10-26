@@ -160,3 +160,25 @@ USEFULL COMMANDS
         python manage.py squashmigrations <appname> <last_migration_we_want_to_be_squashed>
 
         Example: python manage.py squashmigrations app 0004
+
+    ~ Fixtures for loading & unloading data!
+        python manage.py dumpdata                                                       -> prints all the data from db in the terminal
+        python manage.py dumpdata <appname>                                             -> prints the data of specific app
+        python manage.py dumpdata <appname>.<modelname>                                 -> prints the data of specific app model
+        python manage.py dumpdata <appname>.<modelname> --indent 4 --format json        -> prints the data of specific app model in json format
+
+        LOAD data into local json file
+        python manage.py dumpdata --indent 4 --format json > <filepath>
+
+        Issue: Unable to serialize database: 'charmap' codec can't encode character '\u0107'
+        Solution: Use Python's UTF-8 mode: python -Xutf8 manage.py dumpdata > data.json
+
+        Example: 
+        python -Xutf8 manage.py dumpdata --indent 4 --format json > client/fixtures/data.json
+
+
+        UNLOAD data to DB from local json file
+        python manage.py loaddata <filepath>
+
+        Example:
+        python manage.py loaddata client/fixtures/data.json

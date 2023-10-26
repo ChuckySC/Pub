@@ -13,7 +13,7 @@ class MenuSectionsAdmin(admin.ModelAdmin):
     list_filter = [('type')]
 
 class MenuItemsAdmin(admin.ModelAdmin):
-    list_display = ['name', 'type', 'rid', 'rud']
+    list_display = ['name', 'description', 'type', 'rid', 'rud']
     search_fields = ['name']
     list_filter = [('type')]
     
