@@ -1,7 +1,12 @@
 from django.db import models
+from django.utils import timezone
+from django.conf import settings
 from django_resized import ResizedImageField
 
 from admin.db.models import BaseTimestampModel
+
+
+User = settings.AUTH_USER_MODEL
 
 class Units(BaseTimestampModel):
     '''Example: litar, kilogram ...'''
@@ -10,6 +15,7 @@ class Units(BaseTimestampModel):
 
     class Meta:
         managed = True
+        verbose_name = 'Unit'
         verbose_name_plural = 'Units'
         ordering = ['name']
         db_table = 'Units'
@@ -19,17 +25,18 @@ class Units(BaseTimestampModel):
 
 class TypeChoices(models.TextChoices):    
     # DB_VALUE, USER_FACING_VALUE
-    DRINK = 'D', 'Drink'
+    DRINKS = 'D', 'Drinks'
     FOOD = 'F', 'Food'
 
 class MenuSections(BaseTimestampModel):
     '''Example: Breakfast, Lunch, Coffee, Alcohol ...'''
     id = models.BigAutoField(db_column='id', primary_key=True)
     name = models.CharField(db_column='name', max_length=255, unique=True, verbose_name='Menu Section')
-    type = models.CharField(max_length=1, choices=TypeChoices.choices, default=TypeChoices.DRINK, verbose_name='Type')
+    type = models.CharField(max_length=1, choices=TypeChoices.choices, default=TypeChoices.DRINKS, verbose_name='Type')
     
     class Meta:
         managed = True
+        verbose_name = 'Menu Section'
         verbose_name_plural = 'Menu Sections'
         ordering = ['type', 'id']
         db_table = 'MenuSections'
@@ -43,7 +50,7 @@ class MenuItems(BaseTimestampModel):
     name = models.CharField(db_column='name', max_length=255, verbose_name='Name')
     type = models.ForeignKey(
         MenuSections, 
-        models.DO_NOTHING, 
+        models.CASCADE, 
         db_column='menuSectionId', 
         verbose_name='Menu section'
     )
@@ -51,7 +58,7 @@ class MenuItems(BaseTimestampModel):
     quantity = models.FloatField(db_column='quantity', blank=True, null=True, verbose_name='Quantity')
     unitId = models.ForeignKey(
         Units, 
-        models.DO_NOTHING, 
+        models.SET_NULL, 
         blank=True, 
         null=True, 
         db_column='unitId', 
@@ -63,6 +70,7 @@ class MenuItems(BaseTimestampModel):
 
     class Meta:
         managed = True
+        verbose_name = 'Menu Item'
         verbose_name_plural = 'Menu Items'
         ordering = ['name']
         constraints = [models.UniqueConstraint(fields=['name', 'type'], name='unique_item')]
@@ -75,7 +83,7 @@ class Events(BaseTimestampModel):
     id = models.BigAutoField(db_column='id', primary_key=True)
     name = models.CharField(db_column='name', max_length=255, verbose_name='Event name')
     description = models.TextField(db_column='description', blank=True, verbose_name='Event description')
-    date = models.DateField(db_column='date', verbose_name='Date')
+    date = models.DateField(db_column='date', auto_now_add=False, auto_now=False, default=timezone.now, verbose_name='Date')
     img = ResizedImageField(
         size=[2878, 1618], 
         crop=['middle', 'center'], 
@@ -86,6 +94,7 @@ class Events(BaseTimestampModel):
     
     class Meta:
         managed = True
+        verbose_name = 'Event'
         verbose_name_plural = 'Events'
         ordering = ['date', 'name']
         constraints = [models.UniqueConstraint(fields=['name', 'date'], name='unique_event')]
@@ -96,7 +105,12 @@ class Events(BaseTimestampModel):
     
 class Gallery(BaseTimestampModel):
     id = models.BigAutoField(db_column='id', primary_key=True)
-    eventId = models.ForeignKey(Events, models.DO_NOTHING, db_column='eventId', verbose_name='Event')
+    eventId = models.ForeignKey(
+        Events, 
+        models.CASCADE, 
+        db_column='eventId', 
+        verbose_name='Event'
+    )
     img = ResizedImageField(
         size=[2878, 1618], 
         crop=['middle', 'center'], 
@@ -107,6 +121,7 @@ class Gallery(BaseTimestampModel):
     
     class Meta:
         managed = True
+        verbose_name = 'Gallery'
         verbose_name_plural = 'Gallery'
         ordering = ['id']
         constraints = [models.UniqueConstraint(fields=['img'], name='unique_event_photo')]
