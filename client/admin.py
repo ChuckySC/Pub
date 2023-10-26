@@ -8,17 +8,17 @@ class GalleryInline(admin.TabularInline):
     show_change_link = True
 
 class MenuSectionsAdmin(admin.ModelAdmin):
-    list_display = ['name', 'type']
+    list_display = ['name', 'type', 'rid', 'rud']
     search_fields = ['name', 'type']
     list_filter = [('type')]
 
 class MenuItemsAdmin(admin.ModelAdmin):
-    list_display = ['name', 'type']
+    list_display = ['name', 'type', 'rid', 'rud']
     search_fields = ['name']
     list_filter = [('type')]
     
 class EventsAdmin(admin.ModelAdmin):
-    list_display = ['name', 'description', 'date']
+    list_display = ['name', 'description', 'date', 'rid', 'rud']
     search_fields = ['name', 'date']
     list_filter = [('date')]
     
