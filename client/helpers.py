@@ -1,5 +1,5 @@
 from api.views import *
-from .models import MenuSections
+from .models import TypeChoices
 
   
 def render_items(items_response, sections_response):
@@ -19,16 +19,16 @@ def render_items(items_response, sections_response):
     
 def render_sections(sections):
     output = {
-        MenuSections.DRINK_UI: [],
-        MenuSections.FOOD_UI: []
+        TypeChoices.DRINK.label: [],
+        TypeChoices.FOOD.label: []
     }
     
     try:
         for i in range(len(sections)):
-            if sections[i]['type'] == MenuSections.DRINK_DB:
-                output[MenuSections.DRINK_UI].append(sections[i])
+            if sections[i]['type'] == TypeChoices.DRINK.value:
+                output[TypeChoices.DRINK.label].append(sections[i])
             else:
-                output[MenuSections.FOOD_UI].append(sections[i])
+                output[TypeChoices.FOOD.label].append(sections[i])
         return output
     except Exception as e:
         return None

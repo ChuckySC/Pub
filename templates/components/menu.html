@@ -18,30 +18,34 @@
         {% if data is None %}
             <!--Error page-->
         {% else %}
-            {% for type, sections in data.items %}
-                <!--<p class="menu-type">{{ type }}</p>-->
-                
-                {% for section in sections %}
-                    <p class="menu-section">{{ section.name }}</p>
-
-                    <table class="table">
-                        <tbody>
-                            {% for item in section.data %}
-                                <tr>
-                                    <th scope="row">{{ item.name }}</th>
-                                    <td>{{ item.description }}</td>
-                                    {% if item.quantity is None or item.unit is None %}
-                                        <td></td>
-                                    {% else %}
-                                        <td>{{ item.quantity }} {{ item.unit }}</td>
-                                    {% endif %}
-                                    <td>{{ item.price }} {{ item.currency }}</td>
-                                </tr>
+            <div class="container">
+                <div class="row justify-content-around">
+                    {% for type, sections in data.items %}
+                        <div class="col">
+                            <p class="menu-type">{{ type }}</p>
+                            {% for section in sections %}
+                                <p class="menu-section">{{ section.name }}</p>
+                                <table class="table">
+                                    <tbody>
+                                        {% for item in section.data %}
+                                            <tr>
+                                                <th scope="row">{{ item.name }}</th>
+                                                <td>{{ item.description }}</td>
+                                                {% if item.quantity is None or item.unit is None %}
+                                                    <td></td>
+                                                {% else %}
+                                                    <td>{{ item.quantity }} {{ item.unit }}</td>
+                                                {% endif %}
+                                                <td>{{ item.price }} {{ item.currency }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
                             {% endfor %}
-                        </tbody>
-                    </table>
-                {% endfor %}
-            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         {% endif %}
     </div>
 {% endblock content %}
