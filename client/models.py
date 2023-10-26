@@ -1,11 +1,13 @@
 from django.db import models
 from django_resized import ResizedImageField
 
-class Units(models.Model):
+from admin.db.models import BaseTimestampModel
+
+class Units(BaseTimestampModel):
     '''Example: litar, kilogram ...'''
     id = models.BigAutoField(db_column='id', primary_key=True)
     name = models.CharField(db_column='name', max_length=255, verbose_name='Unit')
-    
+
     class Meta:
         managed = True
         verbose_name_plural = 'Units'
@@ -21,7 +23,7 @@ class TypeChoices(models.TextChoices):
     DRINK = 'D', 'Drink'
     FOOD = 'F', 'Food'
 
-class MenuSections(models.Model):
+class MenuSections(BaseTimestampModel):
     '''Example: Breakfast, Lunch, Coffee, Alcohol ...'''
     id = models.BigAutoField(db_column='id', primary_key=True)
     name = models.CharField(db_column='name', max_length=255, verbose_name='Menu Section')
@@ -37,7 +39,7 @@ class MenuSections(models.Model):
     def __str__(self):
         return f'{self.name}'
     
-class MenuItems(models.Model): 
+class MenuItems(BaseTimestampModel): 
     '''Example: Espresso, Cappuccino, Ice tea ...''' 
     id = models.BigAutoField(db_column='id', primary_key=True)
     name = models.CharField(db_column='name', max_length=255, verbose_name='Name')
@@ -73,7 +75,7 @@ class MenuItems(models.Model):
         #     return f'{self.name} --> {self.description}'
         return f'{self.name}'
 
-class Events(models.Model):
+class Events(BaseTimestampModel):
     id = models.BigAutoField(db_column='id', primary_key=True)
     name = models.CharField(db_column='name', max_length=255, verbose_name='Event name')
     description = models.TextField(db_column='description', blank=True, verbose_name='Event description')
@@ -96,7 +98,7 @@ class Events(models.Model):
     def __str__(self):
         return f'{self.name}'
     
-class Gallery(models.Model):
+class Gallery(BaseTimestampModel):
     id = models.BigAutoField(db_column='id', primary_key=True)
     eventId = models.ForeignKey(Events, models.DO_NOTHING, db_column='eventId', verbose_name='Event')
     img = ResizedImageField(
