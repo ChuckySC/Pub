@@ -1,7 +1,11 @@
 from django.db import models
+from django.conf import settings
 from django_resized import ResizedImageField
 
 from admin.db.models import BaseTimestampModel
+
+
+User = settings.AUTH_USER_MODEL
 
 class Units(BaseTimestampModel):
     '''Example: litar, kilogram ...'''
@@ -43,7 +47,7 @@ class MenuItems(BaseTimestampModel):
     name = models.CharField(db_column='name', max_length=255, verbose_name='Name')
     type = models.ForeignKey(
         MenuSections, 
-        models.DO_NOTHING, 
+        models.CASCADE, 
         db_column='menuSectionId', 
         verbose_name='Menu section'
     )
@@ -51,7 +55,7 @@ class MenuItems(BaseTimestampModel):
     quantity = models.FloatField(db_column='quantity', blank=True, null=True, verbose_name='Quantity')
     unitId = models.ForeignKey(
         Units, 
-        models.DO_NOTHING, 
+        models.SET_NULL, 
         blank=True, 
         null=True, 
         db_column='unitId', 
@@ -96,7 +100,12 @@ class Events(BaseTimestampModel):
     
 class Gallery(BaseTimestampModel):
     id = models.BigAutoField(db_column='id', primary_key=True)
-    eventId = models.ForeignKey(Events, models.DO_NOTHING, db_column='eventId', verbose_name='Event')
+    eventId = models.ForeignKey(
+        Events, 
+        models.CASCADE, 
+        db_column='eventId', 
+        verbose_name='Event'
+    )
     img = ResizedImageField(
         size=[2878, 1618], 
         crop=['middle', 'center'], 
