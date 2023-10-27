@@ -29,9 +29,9 @@ def items_view(request):
 
 @login_required 
 @api_view(['GET'])
-def events_view(request):
+def events_view(request, keyword):
     try:
-        events = Events.objects.all()
+        events = Events.objects.filter(name__icontains=keyword)
         serialized = EventsSerializer(events, many=True)
         return Response(serialized.data, status=status.HTTP_200_OK)
     except:
