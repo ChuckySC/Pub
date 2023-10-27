@@ -9,7 +9,7 @@ class GalleryInline(admin.TabularInline):
 
 class MenuSectionsAdmin(admin.ModelAdmin):
     list_display = ['name', 'type', 'rid', 'rud']
-    search_fields = ['name', 'type']
+    search_fields = ['name']
     list_filter = [('type')]
 
 class MenuItemsAdmin(admin.ModelAdmin):
