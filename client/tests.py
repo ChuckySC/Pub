@@ -1,51 +1,82 @@
 from django.test import TestCase
 
-from .models import MenuSections
-from .models import TypeChoices
+from .models import (
+    Units,
+    TypeChoices,
+    MenuSections
+)
 
+
+class MenuUnitsTestCase(TestCase):
+    def create(self):
+        data = [
+            {'name': 'kg'},
+            {'name': 'l'}
+        ]
+        
+        self.a = Units.objects.create(**data[0])
+        self.b = Units.objects.create(**data[1])
+        
+        self.count = 2
+        
+    def setUp(self):
+        self.create()
+        
+    def test_unit_count(self):
+        qs = Units.objects.all()
+        self.assertEqual(qs.count(), self.count)
+    
+    def test_rid(self):
+        qs = Units.objects.get(id=self.a.id)
+        self.assertNotEqual(qs.rid, None)
+        
+    def test_rud(self):
+        qs = Units.objects.get(id=self.a.id)
+        self.assertNotEqual(qs.rud, None)
+        
 class MenuSectionsTestCase(TestCase):
-    def create_section(self):
+    def create(self):
         data = [
             {'name': 'Coffee', 'type': 'D'},
             {'name': 'Cider', 'type': 'D'},
             {'name': 'Salad', 'type': 'F'}
         ]
         
-        self.draft_a = MenuSections.objects.create(**data[0])
-        self.draft_b = MenuSections.objects.create(**data[1])
-        self.draft_c = MenuSections.objects.create(**data[2])
+        self.a = MenuSections.objects.create(**data[0])
+        self.b = MenuSections.objects.create(**data[1])
+        self.c = MenuSections.objects.create(**data[2])
         
-        self.sec_tcount = 3
-        self.sec_dcount = 2
-        self.sec_fcount = 1
+        self.tcount = 3
+        self.dcount = 2
+        self.fcount = 1
         
     def setUp(self):
-        self.create_section()
+        self.create()
+ 
+    def test_count(self):
+        qs = MenuSections.objects.all()
+        self.assertEqual(qs.count(), self.tcount)
+        self.assertNotEqual(qs.count(), self.dcount)
+        self.assertNotEqual(qs.count(), self.fcount)
         
-    def test_section_type(self):
+        qs = MenuSections.objects.filter(type=TypeChoices.DRINKS.value)
+        self.assertEqual(qs.count(), self.dcount)
+        self.assertNotEqual(qs.count(), self.fcount)
+        self.assertNotEqual(qs.count(), self.tcount)
+        
+        qs = MenuSections.objects.filter(type=TypeChoices.FOOD.value)
+        self.assertEqual(qs.count(), self.fcount)
+        self.assertNotEqual(qs.count(), self.dcount)
+        self.assertNotEqual(qs.count(), self.tcount)
+    
+    def test_type(self):
         qs = MenuSections.objects.filter(type=TypeChoices.DRINKS.value)
         self.assertTrue(qs.exists())
         
-    def test_section_count(self):
-        qs = MenuSections.objects.all()
-        self.assertEqual(qs.count(), self.sec_tcount)
-        self.assertNotEqual(qs.count(), self.sec_dcount)
-        self.assertNotEqual(qs.count(), self.sec_fcount)
-        
-        qs = MenuSections.objects.filter(type=TypeChoices.DRINKS.value)
-        self.assertEqual(qs.count(), self.sec_dcount)
-        self.assertNotEqual(qs.count(), self.sec_fcount)
-        self.assertNotEqual(qs.count(), self.sec_tcount)
-        
-        qs = MenuSections.objects.filter(type=TypeChoices.FOOD.value)
-        self.assertEqual(qs.count(), self.sec_fcount)
-        self.assertNotEqual(qs.count(), self.sec_dcount)
-        self.assertNotEqual(qs.count(), self.sec_tcount)
-        
-    def test_section_rid(self):
-        qs = MenuSections.objects.get(id=self.draft_a.id)
+    def test_rid(self):
+        qs = MenuSections.objects.get(id=self.a.id)
         self.assertNotEqual(qs.rid, None)
         
-    def test_section_rud(self):
-        qs = MenuSections.objects.get(id=self.draft_a.id)
+    def test_rud(self):
+        qs = MenuSections.objects.get(id=self.a.id)
         self.assertNotEqual(qs.rud, None)
