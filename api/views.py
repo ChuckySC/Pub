@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -7,6 +7,7 @@ from rest_framework import status
 from client.models import *
 from .serializers import *
 
+@login_required
 @api_view(['GET'])
 def sections_view(request):
     try:
@@ -16,6 +17,7 @@ def sections_view(request):
     except Exception as e:
         return Response(None, status=status.HTTP_400_BAD_REQUEST)
 
+@login_required
 @api_view(['GET'])
 def items_view(request):
     try:
@@ -24,7 +26,8 @@ def items_view(request):
         return Response(serialized.data, status=status.HTTP_200_OK)
     except:
         return Response(None, status=status.HTTP_400_BAD_REQUEST)  
-    
+
+@login_required 
 @api_view(['GET'])
 def events_view(request):
     try:
@@ -33,7 +36,8 @@ def events_view(request):
         return Response(serialized.data, status=status.HTTP_200_OK)
     except:
         return Response(None, status=status.HTTP_400_BAD_REQUEST)  
-    
+
+@login_required 
 @api_view(['GET'])
 def event_view(request, id):
     try:
@@ -42,7 +46,8 @@ def event_view(request, id):
         return Response(serialized.data, status=status.HTTP_200_OK)
     except:
         return Response(None, status=status.HTTP_400_BAD_REQUEST) 
-    
+
+@login_required  
 @api_view(['GET'])
 def gallery_view(request):
     try:

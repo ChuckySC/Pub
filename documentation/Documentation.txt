@@ -171,14 +171,14 @@ USEFULL COMMANDS
         python manage.py dumpdata --indent 4 --format json > <filepath>
 
         Issue: Unable to serialize database: 'charmap' codec can't encode character '\u0107'
-        Solution: Use Python's UTF-8 mode: python -Xutf8 manage.py dumpdata > data.json
+        Solution: Use Python's UTF-8 mode: python -Xutf8 manage.py dumpdata > fixtures/data.json
 
         Example: 
-        python -Xutf8 manage.py dumpdata --indent 4 --format json > client/fixtures/data.json
+        python -Xutf8 manage.py dumpdata --indent 4 --format json > fixtures/data.json
 
 
         UNLOAD data to DB from local json file
         python manage.py loaddata <filepath>
 
         Example:
-        python manage.py loaddata client/fixtures/data.json
+        python manage.py loaddata fixtures/data.json
