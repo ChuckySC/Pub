@@ -6,6 +6,7 @@ from .models import (
     MenuSections
 )
 
+from datetime import datetime
 
 class MenuUnitsTestCase(TestCase):
     def create(self):
@@ -29,10 +30,12 @@ class MenuUnitsTestCase(TestCase):
     def test_rid(self):
         qs = Units.objects.get(id=self.a.id)
         self.assertNotEqual(qs.rid, None)
+        self.assertIsInstance(qs.rid, datetime)
         
     def test_rud(self):
         qs = Units.objects.get(id=self.a.id)
         self.assertNotEqual(qs.rud, None)
+        self.assertIsInstance(qs.rud, datetime)
         
 class MenuSectionsTestCase(TestCase):
     def create(self):
@@ -76,7 +79,9 @@ class MenuSectionsTestCase(TestCase):
     def test_rid(self):
         qs = MenuSections.objects.get(id=self.a.id)
         self.assertNotEqual(qs.rid, None)
+        self.assertIsInstance(qs.rid, datetime)
         
     def test_rud(self):
         qs = MenuSections.objects.get(id=self.a.id)
         self.assertNotEqual(qs.rud, None)
+        self.assertIsInstance(qs.rud, datetime)
