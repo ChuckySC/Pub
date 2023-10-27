@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+
 from django.conf import settings
 from django_resized import ResizedImageField
 
@@ -87,7 +88,7 @@ class Events(BaseTimestampModel):
     img = ResizedImageField(
         size=[2878, 1618], 
         crop=['middle', 'center'], 
-        default='default_square.jpg', 
+        default='default.jpg', 
         upload_to='uploads',
         verbose_name='Event logo'
     )
@@ -102,7 +103,7 @@ class Events(BaseTimestampModel):
     
     def __str__(self):
         return f'{self.name}'
-    
+
 class Gallery(BaseTimestampModel):
     id = models.BigAutoField(db_column='id', primary_key=True)
     eventId = models.ForeignKey(
@@ -114,7 +115,7 @@ class Gallery(BaseTimestampModel):
     img = ResizedImageField(
         size=[2878, 1618], 
         crop=['middle', 'center'], 
-        default='default_square.jpg', 
+        default='default.jpg', 
         upload_to='uploads',
         verbose_name='Photo for gallery'
     )

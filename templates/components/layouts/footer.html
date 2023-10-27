@@ -29,7 +29,9 @@
             </div>
         </div>
         <div class="col-lg-12 copyright-links" align="center">
-            All contents © copyright 2023 <a href="https://github.com/ChuckySC" target="_blank">Chucky</a>. All rights reserved. 
+            <!-- https://docs.djangoproject.com/en/4.2/ref/templates/builtins/#now-->
+            {% now "Y" as current_year %} All contents © copyright {{ current_year }}
+            <a href="https://github.com/ChuckySC" target="_blank">Chucky</a>. All rights reserved. 
         </div>
         <!--<p class="mb-0">
             <a href="#">Back to top</a>
