@@ -43,9 +43,9 @@ def menu_data(request):
     except Exception as e:
         return None
     
-def events_data(request):
+def events_data(request, keyword):
     try:
-        events_response = events_view(request)
+        events_response = events_view(request, keyword)
         return events_response.data
     except Exception as e:
         return None

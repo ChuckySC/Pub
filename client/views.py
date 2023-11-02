@@ -39,7 +39,8 @@ def events(request):
     try:
         # TODO FE part for imgs is hardcoded because imgs exist only locally 
         
-        paginator = Paginator(events_data(request), 24)
+        keyword = request.GET['q'] if 'q' in request.GET else ''
+        paginator = Paginator(events_data(request, keyword), 24)
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
         context = { 'data': page_obj }

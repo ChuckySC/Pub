@@ -29,9 +29,9 @@ def items_view(request):
 
 @login_required 
 @api_view(['GET'])
-def events_view(request):
+def events_view(request, keyword):
     try:
-        events = Events.objects.all()
+        events = Events.objects.filter(name__icontains=keyword)
         serialized = EventsSerializer(events, many=True)
         return Response(serialized.data, status=status.HTTP_200_OK)
     except:
@@ -42,8 +42,20 @@ def events_view(request):
 def event_view(request, id):
     try:
         event = Events.objects.get(id=id)
-        serialized = EventsSerializer(event, many=False)
-        return Response(serialized.data, status=status.HTTP_200_OK)
+        serialized_e = EventsSerializer(event, many=False)
+        data = serialized_e.data
+        
+        gallery = Gallery.objects.filter(eventId=id)
+        if gallery.count() > 1:
+            serialized_g = GallerySerializer(gallery, many=True)
+            data['gallery'] = serialized_g.data
+        elif gallery.count() == 1:
+            serialized_g = GallerySerializer(gallery, many=False)
+            data['gallery'] = [serialized_g.data]
+        else:
+            data['gallery'] = []
+
+        return Response(data, status=status.HTTP_200_OK)
     except:
         return Response(None, status=status.HTTP_400_BAD_REQUEST) 
 
