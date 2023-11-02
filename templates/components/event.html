@@ -7,14 +7,35 @@
             <p class="text-body-secondary">Event date: {{ data.date }}</p>
         </div>
 
-        <div class="col-lg-6 px-0">
-            <h3 class="display-4 fst-italic">{{ data.name }}</h3>
-            <p class="lead my-3">{{ data.description }}</p>
+        <div class="row pb-5">
+            <div class="col-lg-4 px-0">
+                <div class="card shadow-sm">
+                    <img src="http://127.0.0.1:8000/static{{ data.img }}" alt="">
+                </div>
+            </div>
+            <div class="col-lg-8 px-5">
+                <h3 class="display-4 fst-italic">{{ data.name }}</h3>
+                <p class="lead my-3">{{ data.description }}</p>
+            </div>
         </div>
 
-        <div class="col">
+        <!--<div class="col">
             <div class="card shadow-sm">
                 <img src="http://127.0.0.1:8000/static{{ data.img }}" alt="">
+            </div>
+        </div>-->
+        <hr/>
+        <div class="album bg-light ">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    {% for element in data.gallery %}
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img src="http://127.0.0.1:8000/static{{ element.img }}" alt="">
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
 

@@ -88,7 +88,7 @@ class Events(BaseTimestampModel):
     img = ResizedImageField(
         size=[2878, 1618], 
         crop=['middle', 'center'], 
-        default='default.jpg', 
+        default='uploads/default.jpg', 
         upload_to='uploads',
         verbose_name='Event logo'
     )
@@ -115,7 +115,7 @@ class Gallery(BaseTimestampModel):
     img = ResizedImageField(
         size=[2878, 1618], 
         crop=['middle', 'center'], 
-        default='default.jpg', 
+        default='uploads/default.jpg', 
         upload_to='uploads',
         verbose_name='Photo for gallery'
     )
