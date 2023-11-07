@@ -13,7 +13,8 @@
 3. *Check pip version [optional]:*   ```python -m pip --version```
 4. *Upgrade pip version [optional]*:   ```python -m pip install --upgrade pip```
 5. *Install required dependencies:*   ```python -m pip install -r requirements.txt```
-6. *Run project:*   ```python manage.py runserver```
+6. *Create superuser to login to admin:*  ```python manage.py createsuperuser```
+7. *Run project:*   ```python manage.py runserver```
 
 **Or on macOS**
 
@@ -22,4 +23,5 @@
 3. *Check pip version [optional]:*   ```python3 -m pip --version```
 4. *Upgrade pip version [optional]*:   ```python3 -m pip install --upgrade pip```
 5. *Install required dependencies:*   ```python3 -m pip install -r requirements.txt```
-6. *Run project:*   ```python3 manage.py runserver```
+6. *Create superuser to login to admin:*  ```python3 manage.py createsuperuser```
+7. *Run project:*   ```python3 manage.py runserver```
