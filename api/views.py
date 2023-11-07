@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import login_required
+#from django.contrib.auth.decorators import login_required
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -7,7 +7,7 @@ from rest_framework import status
 from client.models import *
 from .serializers import *
 
-@login_required
+#@login_required
 @api_view(['GET'])
 def sections_view(request):
     try:
@@ -17,7 +17,7 @@ def sections_view(request):
     except Exception as e:
         return Response(None, status=status.HTTP_400_BAD_REQUEST)
 
-@login_required
+#@login_required
 @api_view(['GET'])
 def items_view(request):
     try:
@@ -27,7 +27,7 @@ def items_view(request):
     except:
         return Response(None, status=status.HTTP_400_BAD_REQUEST)  
 
-@login_required 
+#@login_required 
 @api_view(['GET'])
 def events_view(request, keyword):
     try:
@@ -37,7 +37,7 @@ def events_view(request, keyword):
     except:
         return Response(None, status=status.HTTP_400_BAD_REQUEST)  
 
-@login_required 
+#@login_required 
 @api_view(['GET'])
 def event_view(request, id):
     try:
@@ -59,7 +59,7 @@ def event_view(request, id):
     except:
         return Response(None, status=status.HTTP_400_BAD_REQUEST) 
 
-@login_required  
+#@login_required  
 @api_view(['GET'])
 def gallery_view(request):
     try:
